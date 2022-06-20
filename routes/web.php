@@ -6,6 +6,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RolController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\CommentController;
 
 
 /*
@@ -33,4 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('roles', RolController::class);
     Route::resource('usuarios', UsuarioController::class);
     Route::resource('blogs', BlogController::class);
+    Route::resource('images', ImageController::class);
+    Route::resource('comments', CommentController::class);
 });

@@ -19,6 +19,7 @@
                             <table class="table table-striped mt-2">
                                 <thead>
                                     <th>Titulo</th>
+                                    <th>Portada</th>
                                     <th>Contenido</th>
                                     <th>Acciones</th>
                                 </thead>
@@ -27,6 +28,9 @@
                                         <tr>
                                             <td style="display: none;">{{ $blog->id }}</td>
                                             <td>{{ $blog->titulo }}</td>
+                                            <td>
+                                                <img class="img-admin-panel" src="{{ asset(str_replace('original.', 'thumb.', $blog->img_url)) }}" alt="{{$blog->name}}">
+                                            </td>
                                             <td>{{ $blog->contenido }}</td>
                                             <td>
                                                 <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST">

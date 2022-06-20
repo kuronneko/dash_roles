@@ -4168,3 +4168,7 @@ body:not(.sidebar-mini) .sidebar-style-2 .sidebar-menu li.active ul.dropdown-men
 .f-right {
     float: right;
 }
+.img-admin-panel{
+    width: 50px;
+    height: 50px;
+}
