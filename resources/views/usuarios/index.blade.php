@@ -39,11 +39,14 @@
                                             </td>
                                             <td>
                                                 <div class="btn-group">
+                                                    @can('editar-usuario')
                                                     <a class="btn btn-warning" href="{{ route('usuarios.edit', $usuario->id) }}"> Editar</a>
-
+                                                    @endcan
+                                                    @can('borrar-usuario')
                                                     {!! Form::open(['route' => ['usuarios.destroy', $usuario->id], 'method' => 'DELETE']) !!}
                                                         {!! Form::submit('Eliminar', ['class' => 'btn btn-danger']) !!}
                                                     {!! Form::close() !!}
+                                                    @endcan
                                                 </div>
 
 
