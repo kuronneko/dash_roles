@@ -13,6 +13,16 @@ use Illuminate\Support\Arr;
 
 class UsuarioController extends Controller
 {
+
+    function __construct()
+    {
+        //restricción de permisos
+        $this->middleware('permission:ver-usuarios|crear-usuarios|editar-usuarios|borrar-usuarios', ['only' => ['index']]);
+        $this->middleware('permission:crear-usuarios', ['only' => ['create', 'store']]);
+        $this->middleware('permission:editar-usuarios', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:borrar-usuarios', ['only' => ['destroy']]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,6 +30,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
+        //pagination de usuarios
         $usuarios = User::paginate(5);
         return view('usuarios.index', compact('usuarios'));
     }
@@ -31,6 +42,7 @@ class UsuarioController extends Controller
      */
     public function create()
     {
+        //buscar todos los roles y obtener solo el nombre
         $roles = Role::pluck('name', 'name')->all();
         return view('usuarios.crear', compact('roles'));
     }
@@ -43,6 +55,7 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        //validacion de parametros
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -50,10 +63,14 @@ class UsuarioController extends Controller
             'roles' => 'required',
         ]);
 
+        //asignar parametros a la variable input
         $input = $request->all();
+        //hashear el password
         $input['password'] = Hash::make($input['password']);
 
+        //creacion del usuario
         $user = User::create($input);
+        //asignar rol al usuario
         $user->assignRole($request->input('roles'));
 
         return redirect()->route('usuarios.index')->with('success', 'Usuario creado correctamente');
@@ -78,8 +95,11 @@ class UsuarioController extends Controller
      */
     public function edit($id)
     {
+        //buscar el usuario
         $user = User::find($id);
+        //buscar todos los roles y obtener solo el nombre
         $roles = Role::pluck('name', 'name')->all();
+        //obtener el nombre del rol del usuario
         $userRole = $user->roles->pluck('name', 'name')->all();
         return view('usuarios.editar', compact('user', 'roles', 'userRole'));
     }
@@ -93,6 +113,7 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //validacion de parametros
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
@@ -100,17 +121,23 @@ class UsuarioController extends Controller
             'roles' => 'required',
         ]);
 
+        //asignar parametros a la variable input
         $input = $request->all();
         if(!empty($input['password'])){ //Si el password no esta vacio
+            //hashear el password
             $input['password'] = Hash::make($input['password']);
         }else{
+            //omitir el password
             $input = Arr::except($input, array('password'));
         }
 
+        //buscar el usuario
         $user = User::find($id);
+        //actualizar el usuario
         $user->update($input);
+        //eliminar el rol del usuario
         DB::table('model_has_roles')->where('model_id', $id)->delete();
-
+        //asignar rol al usuario
         $user->assignRole($request->input('roles'));
         return redirect()->route('usuarios.index')->with('success', 'Usuario actualizado correctamente');
     }
@@ -123,6 +150,7 @@ class UsuarioController extends Controller
      */
     public function destroy($id)
     {
+        //eliminar el usuario
         User::find($id)->delete();
         return redirect()->route('usuarios.index')->with('success', 'Usuario eliminado correctamente');
     }

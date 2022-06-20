@@ -13,6 +13,7 @@ class RolController extends Controller
 
     function __construct()
     {
+        //restricción de permisos
         $this->middleware('permission:ver-rol|crear-rol|editar-rol|borrar-rol', ['only' => ['index']]);
         $this->middleware('permission:crear-rol', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-rol', ['only' => ['edit', 'update']]);
@@ -25,6 +26,7 @@ class RolController extends Controller
      */
     public function index()
     {
+        //paginacion de roles
         $roles = Role::paginate(5);
         return view('roles.index', compact('roles'));
     }
@@ -36,6 +38,7 @@ class RolController extends Controller
      */
     public function create()
     {
+        //crear una lista de permisos
         $permission = Permission::get();
         return view ('roles.crear', compact('permission'));
     }
@@ -48,11 +51,14 @@ class RolController extends Controller
      */
     public function store(Request $request)
     {
+        //validación de parametros
         $this->validate($request, [
             'name' => 'required|unique:roles|max:20',
             'permission' => 'required',
         ]);
+        //creacióin del rol
         $role = Role::create(['name' => $request->input('name')]);
+        //asignar permisos al rol
         $role->syncPermissions($request->input('permission'));
 
         return redirect()->route('roles.index')->with('success', 'Rol creado correctamente');
@@ -77,8 +83,11 @@ class RolController extends Controller
      */
     public function edit($id)
     {
+        //busqueda del rol
         $role = Role::find($id);
+        //obtener la lista de permisos
         $permission = Permission::get();
+        //obtener los permisos del rol
         $rolePermissions = DB::table("role_has_permissions")->where("role_has_permissions.role_id", $id)
         ->pluck('role_has_permissions.permission_id', 'role_has_permissions.permission_id')
         ->all();
@@ -94,15 +103,19 @@ class RolController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //validación de parametros
         $this->validate($request, [
             'name' => 'required',
             'permission' => 'required',
         ]);
 
+        //busqueda del rol
         $role = Role::find($id);
+        //asignar nombre al rol
         $role->name = $request->input('name');
+        //guardar los cambios
         $role->save();
-
+        //asignar permisos al rol
         $role->syncPermissions($request->input('permission'));
         return redirect()->route('roles.index')->with('success', 'Rol actualizado correctamente');
     }
@@ -115,6 +128,7 @@ class RolController extends Controller
      */
     public function destroy($id)
     {
+        //busqueda del rol y eliminación
         DB::table("roles")->where('id', $id)->delete();
         return redirect()->route('roles.index')->with('success', 'Rol eliminado correctamente');
     }

@@ -14,6 +14,7 @@ class BlogController extends Controller
 
     function __construct()
     {
+        //restricción de permisos
         $this->middleware('permission:ver-blog|crear-blog|editar-blog|borrar-blog', ['only' => ['index']]);
         $this->middleware('permission:crear-blog', ['only' => ['create', 'store']]);
         $this->middleware('permission:editar-blog', ['only' => ['edit', 'update']]);
@@ -27,6 +28,7 @@ class BlogController extends Controller
      */
     public function index()
     {
+        //traer 5 elementos por pagina
         $blogs = Blog::paginate(5);
         return view('blogs.index', compact('blogs'));
     }
@@ -49,10 +51,12 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        //validación de parametros
         $this->validate($request, [
             'titulo' => 'required',
             'contenido' => 'required',
         ]);
+        //crear el objeto Blog y guardarlo en la base de datos
         Blog::create($request->all());
         return redirect()->route('blogs.index')->with('success', 'Blog creado correctamente');
     }
@@ -88,10 +92,12 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
+        //validacion de parametros
         $this->validate($request, [
             'titulo' => 'required',
             'contenido' => 'required',
         ]);
+        //actualización del objeto Blog
         $blog->update($request->all());
         return redirect()->route('blogs.index')->with('success', 'Blog actualizado correctamente');
     }
@@ -104,6 +110,7 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
+        //eliminación del objeto Blog
         $blog->delete();
         return redirect()->route('blogs.index')->with('success', 'Blog eliminado correctamente');
     }
