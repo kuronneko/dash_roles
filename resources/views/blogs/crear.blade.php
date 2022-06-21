@@ -41,7 +41,7 @@
                                     <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                                         <div class="form-group">
                                             <label for="titulo">Cargar Imagen</label>
-                                            <input type="file" name="file" id="file" class="form-control">
+                                            <input type="file" name="files[]" id="files" multiple class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">

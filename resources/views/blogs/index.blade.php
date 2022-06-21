@@ -29,7 +29,7 @@
                                             <td style="display: none;">{{ $blog->id }}</td>
                                             <td>{{ $blog->titulo }}</td>
                                             <td>
-                                                <img class="img-admin-panel" src="{{ asset(str_replace('original.', 'thumb.', $blog->img_url)) }}" alt="{{$blog->name}}">
+                                                <img class="img-admin-panel" src="{{ asset(str_replace('original.', 'thumb.', $blog->image->first()->url)) }}" alt="{{$blog->titulo}}">
                                             </td>
                                             <td>{{ $blog->contenido }}</td>
                                             <td>

@@ -20,7 +20,7 @@
                 @foreach ($blogs as $blog)
                 <div class="col-md-2 col-4 mb-3 p-1">
                     <div class="card text-center">
-                        <img src="{{ asset(str_replace('original.', 'thumb.', $blog->img_url)) }}" alt="{{$blog->titulo}}">
+                        <img src="{{ asset(str_replace('original.', 'thumb.', $blog->image->random()->url)) }}" alt="{{$blog->titulo}}">
                         <h5 class="contenido-blog-index text-default font-weight-bold">{{$blog->titulo}}</h5>
                         <p class="contenido-blog-index">{{$blog->contenido}}</p>
                         <p><a href="{{route('public.content', $blog->id)}}" class="btn btn-primary btn-block">Ver más</a></p>
