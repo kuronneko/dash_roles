@@ -12,9 +12,9 @@
                         <div class="card-body">
                             <h3 class="text-center">Dashboard Content</h3>
 
-                            <a class="btn btn-warning" href="{{ route('usuarios.create')}}"> Nuevo</a>
+                            <a class="btn btn-primary" href="{{ route('usuarios.create')}}">Crear Usuario</a>
 
-                            <table class="table table-striped mt-2">
+                            <table class="table table-striped table-responsive mt-2">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -40,7 +40,7 @@
                                             <td>
                                                 <div class="btn-group">
                                                     @can('editar-usuario')
-                                                    <a class="btn btn-warning" href="{{ route('usuarios.edit', $usuario->id) }}"> Editar</a>
+                                                    <a class="btn btn-info" href="{{ route('usuarios.edit', $usuario->id) }}"> Editar</a>
                                                     @endcan
                                                     @can('borrar-usuario')
                                                     {!! Form::open(['route' => ['usuarios.destroy', $usuario->id], 'method' => 'DELETE']) !!}

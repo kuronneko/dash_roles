@@ -40,6 +40,19 @@ class PublicController extends Controller
         //
     }
 
+       /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function showContent($id)
+
+    {
+         //traer 5 elementos por pagina
+         $blog = Blog::findOrFail($id);
+         return view('content', compact('blog'));
+    }
     /**
      * Display the specified resource.
      *
@@ -48,7 +61,7 @@ class PublicController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**

@@ -69,7 +69,6 @@ class BlogController extends Controller
         $blog = new Blog();
         $blog->titulo = $request->titulo;
         $blog->contenido = $request->contenido;
-        $blog->img_url = '';
         $blog->save();
         //actualización de la ruta de la image
         $blog->img_url = Storage::url('public/images/' . $blog->id . '/' . $newFilename . '_original.' . $document->getClientOriginalExtension()); //ruta de la imagen sin extensión

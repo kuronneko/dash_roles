@@ -15,7 +15,7 @@
                                 <a href="{{ route('roles.create') }}" class="btn btn-primary">Crear Rol</a>
                             @endcan
 
-                            <table class="table table-striped mt-2">
+                            <table class="table table-striped table-responsive mt-2">
                                 <thead>
                                     <tr>
                                         <th>Rol</th>

@@ -1,0 +1,40 @@
+@import url("//fonts.googleapis.com/css?family=Nunito:400,600,700,800");
+
+body {
+    font-family: "Nunito", "Segoe UI", arial;
+}
+
+.text-default{
+    color: #017c6b;
+}
+
+.bg-default{
+    background-color: #017c6b;
+}
+
+.contenido-blog-index {
+      padding: 5px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+  }
+
+  .btn-primary, .btn-primary.disabled {
+    box-shadow: 0 2px 6px #acb5f6;
+    background-color: #017c6b;
+    border-color: #017c6b;
+}
+
+.btn-primary:focus, .btn-primary.disabled:focus {
+    background-color: #004B41 !important;
+}
+
+.btn-primary:focus:active, .btn-primary.disabled:focus:active {
+    background-color: #004B41 !important;
+}
+
+.btn-primary:active, .btn-primary:hover, .btn-primary.disabled:active, .btn-primary.disabled:hover {
+    background-color: #004B41 !important;
+}
+
+
