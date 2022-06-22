@@ -10,11 +10,12 @@ class Blog extends Model
     use HasFactory;
     protected $fillable = ['titulo', 'contenido'];
 
-    public function image(){ //$image->album->id
+    //Blog tiene muchas imagenes
+    public function image(){
         return $this->hasMany(Image::class);
     }
-
-    public function comment(){ //$image->album->id
+    //Blog tiene muchos comentarios
+    public function comment(){
         return $this->hasMany(Comment::class);
     }
 }

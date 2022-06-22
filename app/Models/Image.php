@@ -9,7 +9,8 @@ class Image extends Model
 {
     use HasFactory;
 
-    public function blog(){ //$image->album->id
-        return $this->belongsTo(Blog::class, 'blog_id'); //Pertenece a un album.
+    //imagen pertenece a un blog
+    public function blog(){
+        return $this->belongsTo(Blog::class, 'blog_id');
     }
 }

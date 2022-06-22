@@ -30,31 +30,41 @@
 
         <nav class="navbar navbar-expand-md bg-default mb-5">
             <div class="container">
-                <a class="navbar-brand text-white decoration-none" href="/"><i class="fas fa-leaf"></i> wikiPlantas</a>
+                <a class="navbar-brand text-white decoration-none" href="/"><i class="fas fa-leaf"></i>
+                    wikiPlantas</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                  <span class="navbar-toggler-icon"></span>
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-                  <ul class="navbar-nav">
-                    @if (Route::has('login'))
-                    <div class="">
-                        @auth
-                            <a href="{{ url('/home') }}" class="text-white">Home</a>
-                        @else
-                            <a href="{{ route('login') }}" class="text-white">Log in</a>
+                    <ul class="navbar-nav">
+                        @if (Route::has('login'))
+                            <div class="">
+                                @auth
+                                    <a href="{{ url('/home') }}" class="text-white">Home</a>
+                                @else
+                                    <a href="{{ route('login') }}" class="text-white">Log in</a>
 
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}" class="ml-3 text-white">Register</a>
-                            @endif
-                        @endauth
-                    </div>
-                @endif
-                  </ul>
+                                    @if (Route::has('register'))
+                                        <a href="{{ route('register') }}" class="ml-3 text-white">Register</a>
+                                    @endif
+                                @endauth
+                            </div>
+                        @endif
+                    </ul>
                 </div>
             </div>
-          </nav>
+        </nav>
 
-          @yield('content_public')
+        @yield('content_public')
+
+        <footer class="bg-light text-center text-lg-start mt-5">
+            <!-- Copyright -->
+            <div class="text-center p-3 bg-default text-white">
+                <p>wikiPlantas es una repositorio con información referente a plantas, hierbas y símiles.</p>
+                © 2020 Copyright:
+            </div>
+            <!-- Copyright -->
+        </footer>
     </div>
 
 </body>

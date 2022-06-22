@@ -10,7 +10,6 @@
                 <div class="col-lg-12">
                     <div class="card">
                         <div class="card-body">
-                            <h3 class="text-center">Dashboard Content</h3>
 
                             <a class="btn btn-primary" href="{{ route('usuarios.create')}}">Crear Usuario</a>
 

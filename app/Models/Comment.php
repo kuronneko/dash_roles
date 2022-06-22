@@ -9,11 +9,12 @@ class Comment extends Model
 {
     use HasFactory;
 
-    public function user(){ //$image->album->id
-        return $this->belongsTo(User::class, 'user_id'); //Pertenece a un album.
+    //comentario pertenece a un usuario
+    public function user(){
+        return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function blog(){ //$image->album->id
-        return $this->belongsTo(Blog::class, 'blog_id'); //Pertenece a un album.
+    //comentario pertenece a un blog
+    public function blog(){
+        return $this->belongsTo(Blog::class, 'blog_id');
     }
 }

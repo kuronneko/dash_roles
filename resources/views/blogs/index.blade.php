@@ -31,7 +31,7 @@
                                             <td>
                                                 <img class="img-admin-panel" src="{{ asset(str_replace('original.', 'thumb.', $blog->image->first()->url)) }}" alt="{{$blog->titulo}}">
                                             </td>
-                                            <td>{{ $blog->contenido }}</td>
+                                            <td>{{ substr($blog->contenido, 0, 100) }}</td>
                                             <td>
                                                 <div class="btn-group">
                                                     <form action="{{ route('blogs.destroy', $blog->id) }}" method="POST">
