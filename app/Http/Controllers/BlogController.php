@@ -57,16 +57,28 @@ class BlogController extends Controller
     {
         //validación de parametros
         $this->validate($request, [
-            'titulo' => 'required',
-            'contenido' => 'required',
+            'nombre' => 'required',
+            'nombre_comun' => 'required',
+            'nombre_cientifico' => 'required',
+            'clima' => 'required',
+            'descripcion' => 'required',
+            'cultivo' => 'required',
+            'uso' => 'required',
+            'plaga' => 'required',
             'files.*' => 'mimes:png,jpg,jpeg|max:10240', //tamaño máximo de cada imagen 10mb, 3 images máximo
             'files' => 'required',
         ]);
 
         //crear el objeto Blog y guardarlo en la base de datos
         $blog = new Blog();
-        $blog->titulo = $request->titulo;
-        $blog->contenido = $request->contenido;
+        $blog->nombre = $request->nombre;
+        $blog->nombre_comun = $request->nombre_comun;
+        $blog->nombre_cientifico = $request->nombre_cientifico;
+        $blog->clima = $request->clima;
+        $blog->descripcion = $request->descripcion;
+        $blog->cultivo = $request->cultivo;
+        $blog->uso = $request->uso;
+        $blog->plaga = $request->plaga;
         $blog->updated_by = Auth::user()->name;
         $blog->save();
 
@@ -112,8 +124,14 @@ class BlogController extends Controller
     {
         //validacion de parametros
         $this->validate($request, [
-            'titulo' => 'required',
-            'contenido' => 'required',
+            'nombre' => 'required',
+            'nombre_comun' => 'required',
+            'nombre_cientifico' => 'required',
+            'clima' => 'required',
+            'descripcion' => 'required',
+            'cultivo' => 'required',
+            'uso' => 'required',
+            'plaga' => 'required',
         ]);
         //actualización del objeto Blog
         $blog->update($request->all());

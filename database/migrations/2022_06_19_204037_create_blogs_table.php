@@ -15,8 +15,14 @@ class CreateBlogsTable extends Migration
     {
         Schema::create('blogs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('titulo');
-            $table->text('contenido');
+            $table->string('nombre');
+            $table->text('nombre_comun');
+            $table->string('nombre_cientifico');
+            $table->text('clima');
+            $table->text('descripcion');
+            $table->text('cultivo');
+            $table->text('uso');
+            $table->text('plaga');
             $table->string('updated_by');
             $table->timestamps();
         });
