@@ -5,21 +5,21 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <div class="float-left mr-1">
-                    <h1 class="text-default font-weight-bold">{{ $blog->nombre }}</h1>
+                <h1 class="text-default font-weight-bold">{{ $blog->nombre }}</h1>
+                <div class="float-left mr-4">
                     <a data-fancybox="images" href="{{ $blog->image->first()->url }}">
                         <img src="{{ asset(str_replace('original.', 'thumb.', $blog->image->first()->url)) }}"
                         alt="{{ $blog->nombre }}">
                     </a>
                 </div>
-                <div class="mt-5">
+                <div class="">
                     <p><span class="font-weight-bold">Nombre cientifico: </span>{{ substr($blog->nombre_cientifico, 0, 10000) }}</p>
                     <p><span class="font-weight-bold">Nombres comunes: </span>{{ substr($blog->nombre_comun, 0, 10000) }}</p>
                     <p><span class="font-weight-bold">Descripción de la planta: </span>{{ substr($blog->descripcion, 0, 10000) }}</p>
                     <p><span class="font-weight-bold">Clima: </span>{{ substr($blog->clima, 0, 10000) }}</p>
                     <p><span class="font-weight-bold">Cultivo: </span>{{ substr($blog->cultivo, 0, 10000) }}</p>
                 </div>
-                <div class="float-sm-right ml-1">
+                <div class="float-sm-right ml-4">
                     <a data-fancybox="images" href="{{ $blog->image->get(1)->url }}">
                     <img class="img-50" src="{{ asset(str_replace('original.', 'thumb.', $blog->image->get(1)->url)) }}" alt="{{ $blog->titulo }}">
                     </a>

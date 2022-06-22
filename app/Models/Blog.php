@@ -8,14 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Blog extends Model
 {
     use HasFactory;
-    protected $fillable = ['titulo', 'contenido'];
+    protected $fillable = ['nombre', 'nombre_comun', 'nombre_cientifico', 'clima', 'descripcion', 'cultivo', 'uso', 'plaga'];
 
     //Blog tiene muchas imagenes
     public function image(){
         return $this->hasMany(Image::class);
     }
-    //Blog tiene muchos comentarios
-    public function comment(){
-        return $this->hasMany(Comment::class);
+    //Many to many with Tag
+    public function tags(){
+        return $this->belongsToMany(Tag::class)->withPivot('blog_id', 'tag_id');
     }
+
+
 }
