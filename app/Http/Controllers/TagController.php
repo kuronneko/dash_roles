@@ -108,6 +108,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
+        //eliminar blogs asociados a tag
+        $tag->blogs()->detach();
          //eliminación del objeto Blog
          $tag->delete();
          return redirect()->route('tags.index')->with('success', 'Tag eliminado correctamente');

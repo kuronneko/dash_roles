@@ -81,7 +81,18 @@
                                             <input type="file" name="files[]" id="files" multiple class="form-control">
                                         </div>
                                     </div>
-                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="col-xs-12 col-sm-12 col-md-12 mt-4">
+                                        <div class="form-group">
+                                            <label for="">Tags: </label>
+                                            @foreach ($tags as $tag)
+                                            <label>
+                                                {!! Form::checkbox('tags[]', $tag->id, false, array('class' => 'nombre')) !!}
+                                                {{ $tag->nombre }}
+                                            </label>
+                                        @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                                         <button type="submit" class="btn btn-primary">Guardar</button>
                                     </div>
                             </form>

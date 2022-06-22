@@ -31,7 +31,13 @@
                     <p><span class="font-weight-bold">Uso: </span>{{ substr($blog->uso, 0, 10000) }}</p>
                     <p><span class="font-weight-bold">Plagas y Enfermedades: </span>{{ substr($blog->plaga, 0, 10000) }}</p>
                 </div>
+                <div class="mb-2">
+                    @foreach ($blog->tags as $tag)
+                        <span class="badge badge-success">{{$tag->nombre}}</span>
+                    @endforeach
+                </div>
                 <p class="text-secondary font-italic small">Última modificaión por {{$blog->updated_by}} {{\Carbon\Carbon::parse($blog->updated_at)->diffForHumans()}}</p>
+
             </div>
 
         </div>

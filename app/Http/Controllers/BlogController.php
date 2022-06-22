@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Image;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
@@ -33,7 +34,7 @@ class BlogController extends Controller
     public function index()
     {
         //traer 5 elementos por pagina
-        $blogs = Blog::paginate(5);
+        $blogs = Blog::orderBy('updated_at', 'desc')->paginate(5);
         return view('blogs.index', compact('blogs'));
     }
 
@@ -44,7 +45,8 @@ class BlogController extends Controller
      */
     public function create()
     {
-        return view('blogs.crear');
+        $tags = Tag::all();
+        return view('blogs.crear', compact('tags'));
     }
 
     /**
@@ -67,6 +69,7 @@ class BlogController extends Controller
             'plaga' => 'required',
             'files.*' => 'mimes:png,jpg,jpeg|max:10240', //tamaño máximo de cada imagen 10mb, 3 images máximo
             'files' => 'required',
+            'tags' => 'required',
         ]);
 
         //crear el objeto Blog y guardarlo en la base de datos
@@ -86,6 +89,9 @@ class BlogController extends Controller
         $ImageController = new ImageController;
         // Access method in ImageController
         $ImageController->adjuntarImagenesBlog($blog, $request->file('files'));
+
+        //asociar los tags seleccionados al blog
+        $blog->tags()->attach($request->input('tags'));
 
         return redirect()->route('blogs.index')->with('success', 'Blog creado correctamente');
     }
@@ -110,7 +116,8 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return view('blogs.editar', compact('blog'));
+        $tags = Tag::all();
+        return view('blogs.editar', compact('blog', 'tags'));
     }
 
     /**
@@ -132,9 +139,14 @@ class BlogController extends Controller
             'cultivo' => 'required',
             'uso' => 'required',
             'plaga' => 'required',
+            'tags' => 'required',
         ]);
         //actualización del objeto Blog
         $blog->update($request->all());
+        //elimina todos los tags asociados al blog
+        $blog->tags()->detach();
+        //vuelve a asociar los tags seleccionados al blog
+        $blog->tags()->attach($request->input('tags'));
         return redirect()->route('blogs.index')->with('success', 'Blog actualizado correctamente');
     }
 
@@ -153,6 +165,8 @@ class BlogController extends Controller
         if (Storage::exists($folderPath)) {
             Storage::deleteDirectory($folderPath);
         }
+        //eliminar tags asociados a blog
+        $blog->tags()->detach();
         //eliminación del objeto Blog
         $blog->delete();
         return redirect()->route('blogs.index')->with('success', 'Blog eliminado correctamente');

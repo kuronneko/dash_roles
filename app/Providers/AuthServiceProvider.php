@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
+        //establece el super admin al momento de registrarse con el email especificado
         Gate::before(function ($user, $ability) {
             return $user->email == 'admin@gmail.com' ?? null;
         });

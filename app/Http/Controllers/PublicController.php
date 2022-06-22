@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PublicController extends Controller
@@ -15,8 +16,9 @@ class PublicController extends Controller
     public function index()
     {
         //traer 5 elementos por pagina
-        $blogs = Blog::paginate(5);
-        return view('welcome', compact('blogs'));
+        $blogs = Blog::inRandomOrder()->paginate(5);
+        $tags = Tag::inRandomOrder()->get();
+        return view('welcome', compact('blogs', 'tags'));
     }
 
     /**

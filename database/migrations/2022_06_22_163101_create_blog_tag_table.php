@@ -17,7 +17,7 @@ class CreateBlogTagTable extends Migration
             $table->bigIncrements('id');
             //relación de pertenencia con blog
             $table->unsignedBigInteger('blog_id');
-            $table->foreign('blog_id')->references('id')->on('tags');
+            $table->foreign('blog_id')->references('id')->on('blogs');
             //relación de pertenencia con tag
             $table->unsignedBigInteger('tag_id');
             $table->foreign('tag_id')->references('id')->on('tags');

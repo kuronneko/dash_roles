@@ -24,9 +24,8 @@
                         @endif
 
 
-                    <form action="{{ route('blogs.update',$blog->id) }}" method="POST">
-                        @csrf
-                        @method('PUT')
+                        {!! Form::model($blog, ['method' => 'PUT', 'route' => ['blogs.update', $blog->id]]) !!}
+
                         <div class="row">
 
                             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -80,10 +79,22 @@
                                 </div>
                             </div>
 
+                            <div class="col-xs-12 col-sm-12 col-md-12 mt-4">
+                                <div class="form-group">
+                                    <label for="">Tags: </label>
+                                    @foreach ($tags as $tag)
+                                    <label>
+                                        {!! Form::checkbox('tags[]', $tag->id, in_array($tag->id, $blog->tags->pluck('id')->toArray()) ? true:false, array('class' => 'nombre')) !!}
+                                        {{ $tag->nombre }}
+                                    </label>
+                                @endforeach
+                                </div>
+                            </div>
+
                             <div class="col-xs-12 col-sm-12 col-md-12 mt-2">
                             <button type="submit" class="btn btn-primary">Guardar</button>
                         </div>
-                    </form>
+                        {!! Form::close() !!}
 
                         </div>
                     </div>
