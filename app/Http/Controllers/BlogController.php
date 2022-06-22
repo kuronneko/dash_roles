@@ -128,6 +128,13 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
+        //Eliminar imagenes adjuntas al blog
+        $blog->image()->delete();
+        //Eliminar la carpeta contenedora
+        $folderPath = 'public/images/' . $blog->id;
+        if (Storage::exists($folderPath)) {
+            Storage::deleteDirectory($folderPath);
+        }
         //eliminación del objeto Blog
         $blog->delete();
         return redirect()->route('blogs.index')->with('success', 'Blog eliminado correctamente');
