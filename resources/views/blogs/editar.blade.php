@@ -38,7 +38,7 @@
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group">
                                     <label for="nombre_comun">Nombre Común</label>
-                                    <input type="text" name="nombre_comun" class="form-control" value="{{ $blog->nombre }}">
+                                    <input type="text" name="nombre_comun" class="form-control" value="{{ $blog->nombre_comun }}">
                                 </div>
                             </div>
                             <div class="col-xs-12 col-sm-12 col-md-12">
