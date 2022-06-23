@@ -62,7 +62,7 @@
             <!-- Copyright -->
             <div class="text-center p-3 bg-default text-white">
                 <p>wikiPlantas es una repositorio con información referente a plantas, hierbas y símiles.</p>
-                © 2020 Copyright:
+                © 2022 Copyright:
             </div>
             <!-- Copyright -->
         </footer>

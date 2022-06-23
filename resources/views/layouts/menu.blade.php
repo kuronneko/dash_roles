@@ -19,7 +19,7 @@
     @endcan
     @can('ver-tag')
     <a class="nav-link" href="/tags">
-        <i class=" fas fa-blog"></i><span>Tags</span>
+        <i class="fas fa-tags"></i><span>Tags</span>
     </a>
     @endcan
 </li>
