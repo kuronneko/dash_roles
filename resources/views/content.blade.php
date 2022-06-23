@@ -7,8 +7,8 @@
             <div class="col-sm-12">
                 <h1 class="text-default font-weight-bold">{{ $blog->nombre }}</h1>
                 <div class="float-left mr-4">
-                    <a data-fancybox="images" href="{{ $blog->image->first()->url }}">
-                        <img src="{{ asset(str_replace('original.', 'thumb.', $blog->image->first()->url)) }}"
+                    <a data-fancybox="images" href="{{ $blog->images->first()->url }}">
+                        <img src="{{ asset(str_replace('original.', 'thumb.', $blog->images->first()->url)) }}"
                         alt="{{ $blog->nombre }}">
                     </a>
                 </div>
@@ -20,11 +20,11 @@
                     <p><span class="font-weight-bold">Cultivo: </span>{{ substr($blog->cultivo, 0, 10000) }}</p>
                 </div>
                 <div class="float-sm-right ml-4">
-                    <a data-fancybox="images" href="{{ $blog->image->get(1)->url }}">
-                    <img class="img-50" src="{{ asset(str_replace('original.', 'thumb.', $blog->image->get(1)->url)) }}" alt="{{ $blog->titulo }}">
+                    <a data-fancybox="images" href="{{ $blog->images->get(1)->url }}">
+                    <img class="img-50" src="{{ asset(str_replace('original.', 'thumb.', $blog->images->get(1)->url)) }}" alt="{{ $blog->titulo }}">
                     </a>
-                    <a data-fancybox="images" href="{{ $blog->image->last()->url }}">
-                    <img class="img-50" src="{{ asset(str_replace('original.', 'thumb.', $blog->image->last()->url)) }}" alt="{{ $blog->titulo }}">
+                    <a data-fancybox="images" href="{{ $blog->images->last()->url }}">
+                    <img class="img-50" src="{{ asset(str_replace('original.', 'thumb.', $blog->images->last()->url)) }}" alt="{{ $blog->titulo }}">
                     </a>
                 </div>
                 <div class="mt-5">

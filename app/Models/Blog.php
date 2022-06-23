@@ -11,7 +11,7 @@ class Blog extends Model
     protected $fillable = ['nombre', 'nombre_comun', 'nombre_cientifico', 'clima', 'descripcion', 'cultivo', 'uso', 'plaga'];
 
     //Blog tiene muchas imagenes
-    public function image(){
+    public function images(){
         return $this->hasMany(Image::class);
     }
     //Many to many with Tag

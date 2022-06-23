@@ -34,7 +34,7 @@
                                         <tr>
                                             <td>{{ $blog->nombre }}</td>
                                             <td>
-                                                <img class="img-admin-panel" src="{{ asset(str_replace('original.', 'thumb.', $blog->image->first()->url)) }}" alt="{{$blog->titulo}}">
+                                                <img class="img-admin-panel" src="{{ asset(str_replace('original.', 'thumb.', $blog->images->first()->url)) }}" alt="{{$blog->titulo}}">
                                             </td>
                                             <td>{{ substr($blog->nombre_comun, 0, 100) }}</td>
                                             <td>{{ $blog->nombre_cientifico }}</td>
