@@ -7,8 +7,24 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## How to install
+# wikiPlantas
 
+### Description: 
+wikiPlantas is a web application designed to build a repository with information about plants and herbs.
+
+### Features:
+* Laravel-Permission System Implemented
+* Stisla UI
+* Tags System
+* Attach Multiple Images
+
+### Technologies/Libraries:
+Laravel 8, PHP 7.4, Bootstrap 4, CSS, Javascript, Jquery, Laravel-Permissions, Laravel-Collective, StislaUI
+
+### Preview:
+<p> <img src="https://github.com/kuronneko/kuronneko.github.io/blob/master/assets/img/portfoliowp.png" width="450"> </p>
+
+## How to install
 * cp .env.example .env
 * composer install
 * php artisan key:generate
@@ -17,7 +33,7 @@
 * npm install && npm run dev
 * php artisan db:seed --class=SeederTablaPermisos
 * php artisan db:seed --class=SeederTablaTags
-* Super Admin Account: admin@gmail.com
+* register as Super Admin Account: admin@gmail.com
 
 ## License
 
