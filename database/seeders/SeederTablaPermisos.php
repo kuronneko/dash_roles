@@ -3,8 +3,8 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-
-//spatie
+//use spatie
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
 class SeederTablaPermisos extends Seeder
@@ -18,10 +18,10 @@ class SeederTablaPermisos extends Seeder
     {
         //lista de permisos
         $permisos = [
-            'ver-role',
-            'crear-role',
-            'editar-role',
-            'borrar-role',
+            'ver-rol',
+            'crear-rol',
+            'editar-rol',
+            'borrar-rol',
             'ver-blog',
             'crear-blog',
             'editar-blog',
@@ -36,9 +36,11 @@ class SeederTablaPermisos extends Seeder
             'borrar-tag',
         ];
 
+        $SuperUserDemo= Role::create(['name' => 'SuperUserDemo']);
         foreach($permisos as $permiso){
             //creación de permisos
-            Permission::create(['name' => $permiso]);
+            Permission::create(['name' => $permiso])->assignRole($SuperUserDemo);
         }
+
     }
 }
